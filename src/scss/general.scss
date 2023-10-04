@@ -1,0 +1,171 @@
+@use "./util/mixins" as mixin;
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+}
+
+body::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    display: block;
+}
+
+body::-webkit-scrollbar-thumb {
+    background-color: #ccc;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: #b3b3b3;
+    box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+body::-webkit-scrollbar-thumb:active {
+    background-color: #999999;
+}
+
+body::-webkit-scrollbar-track {
+    background-color: #e1e1e1;
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-track:hover,
+body::-webkit-scrollbar-track:active {
+    background-color: #d4d4d4;
+}
+
+ol, li {
+    list-style: none;
+}
+a {
+    text-decoration: none;
+}
+
+.tablet {
+    display: none;
+}
+
+.desktop {
+    display: block;
+}
+
+.main {
+    background-image: url(../assets/home/background-home-desktop.jpg);
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 100vh;
+    transition: 0.5s ease;
+    background-color: rgb(34, 31, 31);
+}
+
+.main.destination {
+    background-image: url(../assets/destination/background-destination-desktop.jpg);
+    background-attachment: fixed;
+}
+
+.main.habitant {
+    background-image: url(../assets/habitants/background-habitant-desktop.jpg);
+    background-attachment: fixed;
+}
+
+.main.technology {
+    background-image: url(../assets/technology/background-technology-desktop.jpg);
+    background-attachment: fixed;
+}
+
+.wrapper {
+    @include mixin.displayFlex(row, start, flex-end);
+    animation: appearBottom 1s ease;
+    z-index: 4;
+}
+
+.glide__bullet--active {
+    border-bottom: 2px solid white !important;
+}
+
+.loading {
+    position: absolute;
+    width: 20%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    img {
+        width: 30%;
+        margin: auto;
+        animation: rotate 1s infinite;
+    }
+}
+
+@keyframes appear {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes appearBottom {
+    from {
+        margin-top: 100vh;
+    }
+    to {
+        margin-top: 0;
+    }
+}
+
+@keyframes rotate {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+// TABLET
+
+@media(max-width: 768px) {
+    .desktop {
+        display: none;
+    }
+    .tablet {
+        display: block;
+    }
+    .wrapper {
+        flex-direction: column;
+    }
+    .main {
+        background-image: url(../assets/home/background-home-tablet.jpg);
+    }
+    .main.destination {
+        background-image: url(../assets/destination/background-destination-tablet.jpg);
+    }
+    .main.habitant {
+        background-image: url(../assets/habitants/background-habitant-tablet.jpg);
+    }
+    .main.technology {
+        background-image: url(../assets/technology/background-technology-tablet.jpg);
+    }
+}
+
+// MOBILE
+
+@media (max-width) {
+    .main {
+        background-image: url(../assets/home/background-home-mobile.jpg);
+    }
+    .main.destination {
+        background-image: url(../assets/destination/background-destination-mobile.jpg);
+    }
+    .main.habitant {
+        background-image: url(../assets/habitants/background-habitant-mobile.jpg);
+    }
+    .main.technology {
+        background-image: url(../assets/technology/background-technology-mobile.jpg);
+    }
+}
